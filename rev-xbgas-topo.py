@@ -34,15 +34,15 @@ class EndpointCreator(merlin.EndPoint):
         miface = lsq.setSubComponent("memIface", "memHierarchy.standardInterface")
 
         # Create the L1 cache
-        l1cache = sst.Component("l1cache" + str(nID), "memHierarchy.Cache")
+        l1cache = sst.Component(f"l1cache{nID}", "memHierarchy.Cache")
         l1cache.addParams(self.config.getL1CacheConfig())
 
         # Create the L2 cache
-        l2cache = sst.Component("l2cache" + str(nID), "memHierarchy.Cache")
+        l2cache = sst.Component(f"l2cache{nID}", "memHierarchy.Cache")
         l2cache.addParams(self.config.getL2CacheConfig())
         
         # Create the memory controller in memHierarchy
-        memctrl = sst.Component("memory" + str(nID), "memHierarchy.MemController")
+        memctrl = sst.Component(f"memory{nID}", "memHierarchy.MemController")
         memctrl.addParams(self.config.getMemCtrlConfig())
 
         # Create the memory backend subcomponent
@@ -51,15 +51,15 @@ class EndpointCreator(merlin.EndPoint):
         
         # Setup the links
         # Connect CPU to L1
-        link_miface_l1cache = sst.Link("link_miface_l1cache" + str(nID))
+        link_miface_l1cache = sst.Link(f"link_miface_l1cache{nID}")
         link_miface_l1cache.connect((miface, "port", "1ns"), (l1cache, "high_network_0", "1ns"))
 
         # Connect L1 to L2
-        link_l1cache_l2 = sst.Link("link_l1cache_l2" + str(nID))
+        link_l1cache_l2 = sst.Link(f"link_l1cache_l2{nID}")
         link_l1cache_l2.connect((l1cache, "low_network_0", "10ns"), (l2cache, "high_network_0", "10ns"))
 
         # Connect L2 to memory controller
-        link_l2_mem = sst.Link("link_l2_mem" + str(nID))
+        link_l2_mem = sst.Link(f"link_l2_mem{nID}")
         link_l2_mem.connect((l2cache, "low_network_0", "40ns"), (memctrl, "direct_link", "40ns"))
 
         # Create remote memory controllers
@@ -81,3 +81,9 @@ sst.merlin._params.update(config.getTorusParams())
 topoGen.prepParams()
 topoGen.setEndPoint(EndpointCreator(config))
 topoGen.build()
+
+# sst.setStatisticOutput("sst.statoutputcsv")
+
+# sst.setStatisticLoadLevel(5)
+
+# sst.enableAllStatisticsForAllComponents()
