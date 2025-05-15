@@ -2,6 +2,17 @@
 
 This folder contains demo materials for the SST tutorial designed for the Southeast University team.
 
+## Prerequisites
+
+Before running the simulations, ensure the following tools and dependencies are installed and configured:
+
+- [SST Core/Elements version 13.1.0](http://sst-simulator.org/SSTPages/SSTBuildAndInstall_older_downloads/)
+- [REV-xBGAS (branch: `devel-xbgas-2`)](https://github.com/artlands/rev-xbgas)
+- [xBGAS-GNU-Toolchain](https://github.com/artlands/riscv-gnu-toolchain-xbgas)
+- [xBGAS Runtime (branch: `openshmem-1.5`)](https://github.com/Artlands/rev-xbgas-runtime)
+
+> **Note:** Be sure to build and install each dependency according to its documentation.
+
 ## Folder Structure
 
 - **`GUPS/`**  
