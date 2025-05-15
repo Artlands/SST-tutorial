@@ -55,7 +55,6 @@ class Config:
 
     # Network Topology
     if cp.has_section('Torus'):
-      self.num_dims    = cp.get('Torus', 'num_dims')
       self.shape       = cp.get('Torus', 'shape')
       self.width       = cp.get('Torus', 'width')
       self.local_ports = cp.get('Torus', 'local_ports')
@@ -65,7 +64,6 @@ class Config:
       self.shape       = cp.get('Mesh', 'shape')
       self.width       = cp.get('Mesh', 'width')
       self.local_ports = cp.get('Mesh', 'local_ports')
-      self.cpus_per_group = self.local_ports
     
     if cp.has_section('FatTree'):
       self.shape = cp.get('FatTree', 'shape')
@@ -157,7 +155,6 @@ class Config:
     
   def getTorusParams(self):
     params = dict({
-      "num_dims"          : self.num_dims,
       "torus.shape"       : self.shape,
       "torus.width"       : self.width,
       "torus.local_ports" : self.local_ports,

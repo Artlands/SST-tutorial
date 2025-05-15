@@ -21,9 +21,9 @@ class EndpointCreator(merlin.EndPoint):
         self.config = config
     
     def getName(self):
-        return "Network Network Endpoint"
+        return "Network Endpoint"
 
-    def build( self, nID, extraKeys):
+    def build(self, nID, extraKeys):
         xbgas_cpu = sst.Component(f"cpu{nID}", "revcpu.RevCPU")
         xbgas_cpu.addParams(self.config.getCpuConfig())
 
@@ -82,8 +82,6 @@ topoGen.prepParams()
 topoGen.setEndPoint(EndpointCreator(config))
 topoGen.build()
 
-# sst.setStatisticOutput("sst.statoutputcsv")
-
-# sst.setStatisticLoadLevel(5)
-
-# sst.enableAllStatisticsForAllComponents()
+sst.setStatisticOutput("sst.statoutputcsv")
+sst.setStatisticLoadLevel(5)
+sst.enableAllStatisticsForAllComponents()
