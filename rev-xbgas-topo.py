@@ -78,9 +78,6 @@ sst.merlin._params.update(config.getNetworkConfig())
 topoGen = merlin.topoTorus()
 sst.merlin._params.update(config.getTorusParams())
 
-# topoGen = merlin.topoFatTree()
-# sst.merlin._params.update(config.getFatTreeParams())
-
 topoGen.prepParams()
 topoGen.setEndPoint(EndpointCreator(config))
 topoGen.build()

@@ -60,6 +60,12 @@ class Config:
       self.width       = cp.get('Torus', 'width')
       self.local_ports = cp.get('Torus', 'local_ports')
       self.cpus_per_group = self.local_ports
+
+    if cp.has_section('Mesh'):
+      self.shape       = cp.get('Mesh', 'shape')
+      self.width       = cp.get('Mesh', 'width')
+      self.local_ports = cp.get('Mesh', 'local_ports')
+      self.cpus_per_group = self.local_ports
     
     if cp.has_section('FatTree'):
       self.shape = cp.get('FatTree', 'shape')
@@ -155,6 +161,14 @@ class Config:
       "torus.shape"       : self.shape,
       "torus.width"       : self.width,
       "torus.local_ports" : self.local_ports,
+    })
+    return params
+
+  def getMeshParams(self):
+    params = dict({
+      "mesh.shape"       : self.shape,
+      "mesh.width"       : self.width,
+      "mesh.local_ports" : self.local_ports,
     })
     return params
   
